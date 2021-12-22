@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+show databases;
+
+use pablo19;
+
+show tables;
+#                           HOME WORK 1
+select * from cars ;
+#найти все машины старше 2000 г
+select * from cars where `year`>2000 limit 1000;
+
+#найти все машины млатше 2015 г
+select * from cars where `year` <2015 limit 1000;
+
+
+#найти все машины 2008, 2009, 2010 годов
+select * from cars where `year` in(2008, 2009, 2010);
+
+#найти все машины не с этих годов 2008, 2009, 2010 годов
+select * from cars where `year` not in (2008,2009,2010);
+select * from cars where 2008 > `year` < 2010 ;
+
+#найти все машины год которых совпадает с ценой
+select * from cars where price = `year`;
+
+#найти все машины bmw старше 2014 года
+select * from cars where model='bmw' and `year` > 2014;
+
+#найти все машины audi младше 2014 года
+select * from cars where model='audi' and `year` < 2014;
+
+#vнайти первые 5 машин
+select * from cars limit 5;
+
+#найти последнии 5 машин
+select * from cars order by id desc limit 5;
+
+#найти среднее арифметическое цен машин модели KIA
+select avg(price),  model as average_price  from cars where model='KIA';
+
+#найти среднее арифметическое цен каждой машины
+select avg(price), model as average_price  from cars group by model;
+
+#посчитать количество каждой марки машин
+select count(model),model from cars group by model;
+
+#найти марку машины количество которых больше всего
+select count(model)as co , model from cars group by model  order by co desc limit 1 ;
+
+#найти все машины в модели которых вторая и предпоследняя буква "а"
+select * from cars where model like("%a_");
+
+#найти все машины модели которых больше 8 символов
+select * from cars where length(model)>8;
+
+#***найти машины цена которых больше чем цена среднего арифметического всех машин
+
+select * from cars where price > (select avg(price) from cars);
+</body>
+</html>
